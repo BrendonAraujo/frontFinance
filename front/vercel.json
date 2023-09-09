@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "https://backendfinanceprod.azurewebsites.net/(.*)",
+      "source": "/backendfinanceprod.azurewebsites.net/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
