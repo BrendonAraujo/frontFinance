@@ -8,7 +8,7 @@ import UserResetPassword from '@/models/Users/UsertResetPassword';
 import User from '@/models/Users/User';
 import UserUpdate from '@/models/Users/UserUpdate';
 
-const urlApi = 'https://backendfinanceprod.azurewebsites.net'; //'https://localhost:7245/';
+const urlApi = 'https://backendfinanceprod.azurewebsites.net/'; //'https://localhost:7245/';
 let resetCode = 0;
 let UserEmail = "";
 
