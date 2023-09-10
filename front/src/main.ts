@@ -19,6 +19,14 @@ import router from '@/router/index'
 const route  = router;
 const app = createApp(App)
 
+const cors = require('cors');
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200
+}
+app.use(cors(corsOptions))
+
 app.component('VueDatePicker', VueDatePicker);
 registerPlugins(app)
 
