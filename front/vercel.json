@@ -7,7 +7,7 @@
           ]
         },
         {
-          "source": "/front-finance-dpaswegrk-brendonaraujo192.vercel.app/(.*)",
+          "source": "/front-finance.vercel.app/(.*)",
           "headers": [
             { "key": "Access-Control-Allow-Origin", "value": "*" }
           ]
