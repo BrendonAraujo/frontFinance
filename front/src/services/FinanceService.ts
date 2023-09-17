@@ -3,7 +3,7 @@ import FinanceEdit from '@/models/ReleasesFiance/FinanceEdit';
 import FinanceFilter from '@/models/ReleasesFiance/FinanceFilter';
 import axios from 'axios';
 
-const urlApi = 'https://localhost:7245/';
+const urlApi = 'https://backendfinanceprod.azurewebsites.net/'; //'https://localhost:7245/';
 
 class FinanceService { 
     public token : string = "";
