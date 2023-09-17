@@ -2,7 +2,7 @@ import Account from '@/models/Account/Account';
 import FinanceCreate from '@/models/ReleasesFiance/FinanceCreate';
 import axios from 'axios';
 
-const urlApi = 'https://localhost:7245/';
+const urlApi = 'https://backendfinanceprod.azurewebsites.net/'; //'https://localhost:7245/';
 
 const config = {
     headers: {
