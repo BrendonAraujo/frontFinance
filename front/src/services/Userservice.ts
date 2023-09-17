@@ -8,14 +8,18 @@ import UserResetPassword from '@/models/Users/UsertResetPassword';
 import User from '@/models/Users/User';
 import UserUpdate from '@/models/Users/UserUpdate';
 
-const urlApi = 'https://localhost:7245/';
+const urlApi = 'https://backendfinanceprod.azurewebsites.net/'; //'https://localhost:7245/';
 let resetCode = 0;
 let UserEmail = "";
 
 const config = {
     headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json'
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+        'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     }
 };
 
@@ -39,7 +43,7 @@ class UserService {
     }  
 
     login(user: UserSigin){
-      return axios.post(urlApi+'Auth/v1/Sigin/',user, this.getConfigRequest())
+      return axios.post(urlApi+'Auth/v1/Sigin/',user,this.getConfigRequest())
         .then(function (response) {
           // aqui acessamos o corpo da resposta:
           return response.data
