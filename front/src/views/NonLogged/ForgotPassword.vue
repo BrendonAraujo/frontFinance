@@ -90,11 +90,8 @@ export default {
             user.code = resetCode;
             let request = userService.validateResetPasswordCode(user);
             userService.Resetcode = resetCode;
-            
-            console.log(userService);
 
             request.then((result) => {
-                console.log(result);
                 if(result.statusCode == 0){
                     if(result.data){
                         setTimeout(() => (this.loading = false), 2000);

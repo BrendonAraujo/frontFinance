@@ -1,6 +1,7 @@
 import FinanceCreate from '@/models/ReleasesFiance/FinanceCreate';
 import FinanceEdit from '@/models/ReleasesFiance/FinanceEdit';
 import FinanceFilter from '@/models/ReleasesFiance/FinanceFilter';
+import { store } from '@/store';
 import axios from 'axios';
 
 const urlApi = 'https://localhost:7245/';
@@ -18,7 +19,6 @@ class FinanceService {
             })
     };
     GetByFilter(filter : FinanceFilter){
-        console.log(filter)
         return axios.post(urlApi+'Finance/v1/by-filter/',filter,this.getConfigRequest())
             .then(function(response){
                 return response.data.data
@@ -41,6 +41,9 @@ class FinanceService {
     edit(finance: FinanceEdit){
         return axios.put(urlApi+'Finance/v1/',finance,this.getConfigRequest())
             .then(function(response){
+                if(response.data.statusCode == 0){
+                    store.commit("editFinance",response.data.data);
+                }
                 return response.data.data
             })
             .catch(function (error) {
@@ -50,9 +53,11 @@ class FinanceService {
     };
     delete(itemId : number){
         let config = this.getConfigRequest();
-        console.log(this.token)
         return axios.delete(urlApi + 'Finance/v1/'+itemId, config)
             .then(function(response){
+                if(response.data.statusCode == 0){
+                    store.commit('deleteFinance', itemId)
+                }
                 return response.data.data
             })
             .catch(function (error){

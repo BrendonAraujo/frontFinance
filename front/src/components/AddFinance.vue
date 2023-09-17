@@ -144,22 +144,17 @@
             accountService.Accounts = result;
             this.banckAcounts = result;
           }else{
-            console.log("undefined")
           }
         });
       },
       save(){
         if(this.acountSelected != null || this.acountSelected != undefined){
-          console.log(this.tipoLancamento)
           let finance = new FinanceCreate();
           finance.AccountId = this.acountSelected.id
           finance.TypeFinanceRelease = this.tipoLancamento
           finance.DateExec = this.date
           finance.Value = this.value;
           finance.Obs = this.obs;
-          console.log(finance);
-
-          console.log(financeService.token)
           financeService.add(finance);
 
           this.dialog = false

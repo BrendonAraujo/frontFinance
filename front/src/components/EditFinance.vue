@@ -139,12 +139,10 @@ export default{
             accountService.Accounts = result;
             this.banckAcounts = result;
           }else{
-            console.log("undefined")
           }
         });
       },
       save(){
-        console.log(this.finance);
         if(this.acountSelected != null || this.acountSelected != undefined){
            let finance = new FinanceEdit();
            finance.AccountId = this.acountSelected.id
@@ -153,8 +151,6 @@ export default{
            finance.DateExec = this.dataExect
            finance.Obs = this.obs;
            finance.id = this.finance.id;
-
-           console.log(financeService.token)
            financeService.edit(finance);
 
            this.dialog = false

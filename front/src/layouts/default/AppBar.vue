@@ -2,6 +2,7 @@
   <v-app-bar
     dark
     prominent
+    v-show="showBar"
   >
     <v-app-bar-nav-icon @click="load()" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     <v-app-bar-title clas="grey--text">
@@ -27,7 +28,7 @@
   <v-card>
     <v-list>
       <v-list-item>
-        <v-list-item-title>{{userName}}</v-list-item-title>
+        <v-list-item-title>{{userLogged.UserData.name}}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
@@ -44,13 +45,16 @@
 <script>
 import userService from '@/services/Userservice';
 import router from '@/router';
+import { store, useStore } from '@/store'
+import { mapState } from 'vuex';
+
 export default{
   components: {
     
   },
   data(){
     return{
-      drawer: true,
+      drawer: store.state.user.token != '',
       userName: "",
       screenList:[
         { name:"Editar usuário", path: "/edituser"},
@@ -60,7 +64,7 @@ export default{
     }
   },
   created: function(){
-    this.userName = userService.user.UserData.name;
+
   },
   methods:{
     onExit(){
@@ -73,6 +77,10 @@ export default{
     goTo(path){
       router.push(path)
     }
-  }
+  },
+  computed: mapState ({
+    userLogged: state => state.user,
+    showBar: state => state.user.token != ''
+  }),
 }
 </script>

@@ -29,5 +29,5 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "vite.config.ts"
-  ]
+, "src/store/index.ts"  ]
 }

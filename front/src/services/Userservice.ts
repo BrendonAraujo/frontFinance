@@ -39,7 +39,7 @@ class UserService {
     }  
 
     login(user: UserSigin){
-      return axios.post(urlApi+'Auth/v1/Sigin/',user)
+      return axios.post(urlApi+'Auth/v1/Sigin/',user, this.getConfigRequest())
         .then(function (response) {
           // aqui acessamos o corpo da resposta:
           return response.data
@@ -51,7 +51,6 @@ class UserService {
     }
 
     update(user: UserUpdate){
-      console.log(user)
       return axios.post(urlApi+'Auth/v1/edit/', user, this.getConfigRequest())
       .then(function (response) {
         // aqui acessamos o corpo da resposta:

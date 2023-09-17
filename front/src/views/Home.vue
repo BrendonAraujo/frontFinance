@@ -61,7 +61,7 @@
         </v-row>
         <v-expansion-panels>
           <v-expansion-panel
-            v-for="(item, Id) in itens" :key="Id"      
+            v-for="(item, Id) in itensFinance" :key="Id"      
             multiple
           >
             <v-expansion-panel-title>
@@ -124,9 +124,11 @@ import AddFinance from '@/components/AddFinance.vue'
 import EditFinance from '@/components/EditFinance.vue'
 import financeService from '@/services/FinanceService'
 import FinanceFilter from '@/models/ReleasesFiance/FinanceFilter'
+import { store } from '@/store';
+import { mapState } from 'vuex';
 
-if(userService.user.token == "")
-   router.push("/login");
+if(store.state.user.token == "")
+  router.push('/login');
 
 export default {
   components:{
@@ -157,8 +159,7 @@ export default {
     filter.year = today.getFullYear();
   
     financeService.GetByFilter(filter).then((result) => {
-      this.itens = result
-      this.itens.forEach(x => this.totalValue  += x.value);
+      store.state.finance = result;
     });
   
   },
@@ -166,10 +167,6 @@ export default {
     load(){
       this.totalValue = 0;
       financeService.token = userService.user.token;
-      // financeService.GetAll().then((result) => {
-      //   this.itens = result
-      //   this.itens.forEach(x => this.totalValue  += x.value);
-      // });
 
       let filter = new FinanceFilter();
 
@@ -178,14 +175,12 @@ export default {
       filter.type = this.tipoLancamento;
 
       financeService.GetByFilter(filter).then((result) => {
-        this.itens = result
-        this.itens.forEach(x => this.totalValue  += x.value);
+        store.state.finance = result;
       });
     },
     deleteItem(item){
       financeService.token = userService.user.token;
-      console.log(item)
-      financeService.delete(item).then((result) => this.load());
+      financeService.delete(item);
     },
     nextMonth(){
       if(this.selectedMonth < 11)
@@ -209,7 +204,10 @@ export default {
       }
       this.load()
     }
-  }
+  },
+  computed: mapState ({
+    itensFinance: state => state.finance,
+  }),
 }
 
 

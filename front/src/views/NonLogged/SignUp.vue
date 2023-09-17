@@ -118,7 +118,6 @@ export default {
             let request = userService.singUp(user);
 
             request.then((result) => {
-                console.log(result);
                 if(result.statusCode == 0){
                     setTimeout(() => (this.loading = false), 2000);
                     setTimeout(() => router.push("/login") , 2000);

@@ -76,6 +76,7 @@ import router from '@/router';
 import UserSigin from '@/models/Users/UserSignIn';
 import userService from '@/services/Userservice';
 import User from '@/models/Users/User';
+import { store, useStore } from '@/store'
 
 export default {
     data() {
@@ -117,6 +118,8 @@ export default {
 
                     userService.user = loggedUser;
                     
+                    store.state.user = loggedUser;
+
                     setTimeout(() => (this.loading = false), 2000);
                     setTimeout(() => router.push("/home") , 2000);
                 }
