@@ -176,6 +176,7 @@ export default {
 
       financeService.GetByFilter(filter).then((result) => {
         store.state.finance = result;
+        store.state.finance.forEach(x => this.totalValue  += x.value);
       });
     },
     deleteItem(item){
