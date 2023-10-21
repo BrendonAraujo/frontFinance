@@ -36,3 +36,4 @@ app.component('VueDatePicker', VueDatePicker);
 registerPlugins(app)
 
 app.mount('#app')
+
