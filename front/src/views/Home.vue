@@ -165,7 +165,6 @@ export default {
   },
   methods:{
     load(){
-      this.totalValue = 0;
       financeService.token = userService.user.token;
 
       let filter = new FinanceFilter();
@@ -176,12 +175,19 @@ export default {
 
       financeService.GetByFilter(filter).then((result) => {
         store.state.finance = result;
-        store.state.finance.forEach(x => this.totalValue  += x.value);
+        this.updateTotal()
       });
     },
     deleteItem(item){
       financeService.token = userService.user.token;
       financeService.delete(item);
+      this.updateTotal()
+    },
+    updateTotal(){
+      
+      this.totalValue = 0;
+      console.log(this.itensFinance)
+      this.itensFinance.forEach(x => this.totalValue  += x.value);
     },
     nextMonth(){
       if(this.selectedMonth < 11)
