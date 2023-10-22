@@ -180,14 +180,16 @@ export default {
     },
     deleteItem(item){
       financeService.token = userService.user.token;
-      financeService.delete(item);
-      this.updateTotal()
+      financeService.delete(item).then(() =>{
+        this.updateTotal()
+      });
     },
     updateTotal(){
-      
       this.totalValue = 0;
       console.log(this.itensFinance)
       this.itensFinance.forEach(x => this.totalValue  += x.value);
+      console.log(this.totalValue)
+
     },
     nextMonth(){
       if(this.selectedMonth < 11)
