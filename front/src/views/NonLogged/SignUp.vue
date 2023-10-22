@@ -15,7 +15,7 @@
                         variant="outlined"
                         placeholder="John"
                         clearable
-                        label="Name"
+                        label="Nome"
                         v-model="name"
                         :rules="nameRules"
                         required
@@ -24,7 +24,7 @@
                         variant="outlined"
                         placeholder="User@gmail.com"
                         clearable
-                        label="Email"
+                        label="E-mail"
                         v-model="email"
                         :rules="emailRules"
                         required
@@ -32,7 +32,7 @@
                         <v-text-field
                         variant="outlined"
                         clearable
-                        label="Password"
+                        label="Senha"
                         v-model="password"
                         :rules="passwordRules"
                         required
@@ -40,7 +40,7 @@
                         <v-text-field
                         variant="outlined"
                         clearable
-                        label="Confirm Password"
+                        label="Confirmação de senha"
                         v-model="confirmPassword"
                         :rules="passwordConfirmRules"
                         required
@@ -53,7 +53,7 @@
                             size="large"
                             type="submit"
                             variant="elevated"  
-                        >Sign Up
+                        >Cadastrar
                         </v-btn>
                     </v-container>
                 </v-form>
@@ -85,19 +85,19 @@ export default {
             message: "",
             showMessageAlert : false,
             nameRules:[
-                validLenght => (validLenght?.length > 2) || 'Name too short',
+                validLenght => (validLenght?.length > 2) || 'O nom deve container mais que dois caracteres',
             ],
             emailRules: [
-                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'E-mail must be valid'
+                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'E-mail precisa ser valido'
             ],
             passwordRules: [
-                (validlength => (validlength?.length > 5) || 'The password  has to be more then 5 caracters'),
-                (containsNumber => regexNumber.test(containsNumber) || 'The password has to be a number'),
-                (constainsText => regexText.test(constainsText) || 'The password has to be a letter'),
-                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'The password has to be a special character')
+                (validlength => (validlength?.length > 5) || 'A senha precisa ter mais de 5 caracteres'),
+                (containsNumber => regexNumber.test(containsNumber) || 'A senha precisa ter pelo menos um número'),
+                (constainsText => regexText.test(constainsText) || 'A senha precisa ter pelo menos uma letra'),
+                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'A senha precisa ter pelo menos um caracter especial')
             ],
             passwordConfirmRules: [
-                isValid => isValid == this.password || 'The confirmed password has to be equals to the password'
+                isValid => isValid == this.password || 'O campo confirmação de senha precisa ser igual ao campo senha'
             ]
         }
     },

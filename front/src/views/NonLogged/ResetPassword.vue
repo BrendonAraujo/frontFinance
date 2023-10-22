@@ -2,8 +2,10 @@
 	<v-container>
 		<v-row>
 			<v-col>
-				<h1>Reset Password</h1>
-				<p>Inform the new password</p>
+				<!-- <h1>Reset Password</h1> -->
+				<h1>Alteração de senha</h1>
+				<!-- <p>Inform the new password</p> -->
+				<p>Informe a nova senha</p>
 			</v-col>
 		</v-row>
 		<v-row>
@@ -12,7 +14,7 @@
 					<v-text-field
 						variant="outlined"
 						clearable
-						label="Password"
+						label="Senha"
 						:rules="passwordRules"
 						v-model="password"
 						required
@@ -20,7 +22,7 @@
 					<v-text-field
 						variant="outlined"
 						clearable
-						label="Confirm Password"
+						label="Confirme a senha"
 						required
 						v-model="confirmPassword"
 						:rules="passwordConfirmRules"
@@ -32,7 +34,7 @@
 						size="large"
 						type="submit"
 						variant="elevated"  
-					>Reset
+					>Atualizar senha
 					</v-btn>
 				</v-form>
 			</v-col>
@@ -58,13 +60,13 @@ export default {
             password: "",
             confirmPassword: "",
             passwordRules: [
-                (validlength => (validlength?.length > 5) || 'The password  has to be more then 5 caracters'),
-                (containsNumber => regexNumber.test(containsNumber) || 'The password has to be a number'),
-                (constainsText => regexText.test(constainsText) || 'The password has to be a letter'),
-                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'The password has to be a special character')
+                (validlength => (validlength?.length > 5) || 'A senha deve possir mais que 5 caracteres'),
+                (containsNumber => regexNumber.test(containsNumber) || 'A senha deve container pelo menos um numero'),
+                (constainsText => regexText.test(constainsText) || 'A senha deve possuir pelo menos uma letra'),
+                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'A senha deve conter pelo menos um caracter especial')
             ],
             passwordConfirmRules: [
-                isValid => isValid == this.password || 'The confirmed password has to be equals to the password'
+                isValid => isValid == this.password || 'O campo de confirmação de senha deve ser igual ao campo senha'
             ]
         }  
     },
@@ -85,12 +87,12 @@ export default {
                 .then((result) =>{
                     if(result.statusCode == 0){
                         if(result.data){
-                            alert("Restore password completed");
+                            alert("Alteração de senha realizada com sucesso");
                             setTimeout(() => (this.loading = false), 2000);
                             setTimeout(() => router.push("/login") , 2000);
                         }
                     }else{
-                        alert("Cannot reset password");
+                        alert("Não foi possivel atualizar a senha");
                         setTimeout(() => router.push("/login") , 2000);
                     }
                 });

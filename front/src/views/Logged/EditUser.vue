@@ -28,7 +28,7 @@
                                         required 
                                         v-model="email"
                                         :rules="emailRules"
-                                        label="Email">
+                                        label="E-mail">
                                     </v-text-field>
                                 </v-col>
                                 <v-col cols="12">
@@ -70,22 +70,22 @@ export default{
             loading: false,
             name: "",
             nameRules:[
-                validLenght => (validLenght?.length > 2) || 'Name too short',
+                validLenght => (validLenght?.length > 2) || 'Nome precisa ser maior que 2 caracteres',
             ],
             email:"",
             emailRules: [
-                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'E-mail must be valid'
+                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'E-mail precisa ser válido'
             ],
             password: "",
             passwordRules: [
-                (validlength => (validlength?.length > 5) || 'The password  has to be more then 5 caracters'),
-                (containsNumber => regexNumber.test(containsNumber) || 'The password has to be a number'),
-                (constainsText => regexText.test(constainsText) || 'The password has to be a letter'),
-                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'The password has to be a special character')
+                (validlength => (validlength?.length > 5) || 'A senha precisa ser maior que 5 caracteres'),
+                (containsNumber => regexNumber.test(containsNumber) || 'A senha precisa conter números'),
+                (constainsText => regexText.test(constainsText) || 'A senha precisa conter letras'),
+                (containsSpecialCaracter => regexSpecialCharacters.test(containsSpecialCaracter) || 'A senha precis caracteres especiais')
             ],
             passwordConfirm:"",
             passwordConfirmRules: [
-                isValid => isValid == this.password || 'The confirmed password has to be equals to the password'
+                isValid => isValid == this.password || 'O campo confirmação de senha precisa ser igual ao campo senha'
             ]
         }
     },

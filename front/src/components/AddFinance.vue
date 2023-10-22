@@ -3,7 +3,7 @@
     <v-btn
       color="primary"
       dark
-      @click.stop="dialog = true"
+      @click.stop="active()"
       icon="mdi-plus"
       small
     >
@@ -66,13 +66,12 @@
             <v-row>
               <v-col cols="12">
                 <v-combobox
-                  @click="getAccount()"
                   v-model="acountSelected"
                   :items="banckAcounts"
                   item-title="name"
                   item-value="id"
                   :return-object="true"
-                  label="Select an item.."
+                  label="Selecione uma conta bancária"
                   outlined
                   clearable
                   hide-selected
@@ -147,6 +146,21 @@
           }
         });
       },
+      clearValues(){
+        console.log("Limpei os campos")
+        this.tipoLancamento = null,
+        this.receita = 0,
+        this.despesa =  1,
+        this.value = 0,
+        this.date = new Date(),
+        this.banckAcounts = accountService.Accounts,
+        this.acountSelected = null,
+        this.obs = ""
+      },
+      active(){
+        this.clearValues();
+        this.dialog = true
+      },
       save(){
         if(this.acountSelected != null || this.acountSelected != undefined){
           let finance = new FinanceCreate();
@@ -162,6 +176,13 @@
           alert("Select an Account")
         }
       }
+    },
+    mounted(){
+      this.clearValues();
+    },
+    created: function(){
+      this.clearValues();
+      this.getAccount();
     }
   }
 </script>

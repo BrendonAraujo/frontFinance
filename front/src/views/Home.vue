@@ -1,7 +1,7 @@
 <template >
   <v-container>
     <v-col cols="12">
-      <h1>Welcome {{ userName }}</h1>
+      <h1>Bem vindo {{ userName }}</h1>
     </v-col>
     <v-col cols="12">
       <v-card class="text-center">
@@ -53,7 +53,7 @@
       <v-container @load="load()" fluid>
         <v-row>
           <v-col cols="6">
-            <v-btn @click="load()">Atualiza</v-btn>
+            <v-btn @click="load()">Atualizar</v-btn>
           </v-col>
           <v-col cols="6">
             <add-finance></add-finance>
@@ -91,7 +91,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="auto">
-                    <p>Account: {{ item.account.name }}</p>
+                    <p>Conta: {{ item.account.name }}</p>
                   </v-col>
                   <v-col cols="auto">
                     <edit-finance :finance="item"></edit-finance>

@@ -25,14 +25,14 @@
                             variant="outlined"
                             placeholder="User@gmail.com"
                             clearable
-                            label="Login"
+                            label="E-mail"
                             v-model="email"
                             :rules="emailRules"
                             required
                         ></v-text-field>
                         <v-text-field
                             variant="outlined"
-                            label="Password"
+                            label="Senha"
                             clearable
                             :type="showPassword ? 'text' : 'password'"
                             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -48,12 +48,12 @@
                             size="large"
                             type="submit"
                             variant="elevated"  
-                        >Sign in
+                        >Entrar
                         </v-btn>
                         <a 
                             href="/finduseremail"
                         >
-                            Forgot password?
+                            Esqueceu a senha?
                         </a>
                         <v-divider :thickness="50" class="border-opacity-0"></v-divider>
                         <v-btn
@@ -62,7 +62,7 @@
                             color="red"
                             size="large"
                             variant="elevated"  
-                        >SingUp
+                        >Criar Conta
                         </v-btn>
                     </v-container>
                 </v-form>
@@ -89,10 +89,10 @@ export default {
             loading: false,
             form: false,
             passwordRules: [
-                hasValue => hasValue.length >= 6 || 'Password too short',
+                hasValue => hasValue.length >= 6 || 'Senha precisa ter mais de 5 caracteres',
             ],
             emailRules: [
-                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'E-mail must be valid'
+                isValid => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(isValid) || 'Email precisa ser válido'
             ]
         }
     },

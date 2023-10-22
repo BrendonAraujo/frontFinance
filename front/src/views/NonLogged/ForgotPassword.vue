@@ -6,8 +6,10 @@
             </v-col>
         </v-row>
         <v-container>
-            <h1>Reset password</h1>
-            <p>Type the number we sent to your e-mail</p>
+            <!-- <h1>Reset password</h1> -->
+            <h1>Alteração de senha</h1>
+            <p>Digite o códio que enviamos para seu e-mail</p>
+            <!-- <p>Type the number we sent to your e-mail</p> -->
         </v-container>
         <v-form v-model="form" @submit.prevent="onsubmit">
             <v-container>
@@ -46,15 +48,15 @@
                 <v-row>
                     <v-col>
                         <v-btn 
-                    :disabled="!form"
-                    :loading="loading"
-                    block
-                    color="success"
-                    size="large"
-                    type="submit"
-                    variant="elevated"  
-                >Sign in
-                </v-btn>   
+                            :disabled="!form"
+                            :loading="loading"
+                            block
+                            color="success"
+                            size="large"
+                            type="submit"
+                            variant="elevated"  
+                        >Enviar
+                        </v-btn>   
                     </v-col>  
                 </v-row>  
             </v-container>

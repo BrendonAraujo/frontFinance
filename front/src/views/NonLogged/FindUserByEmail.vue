@@ -10,12 +10,13 @@
                 <v-form v-model="form" @submit.prevent="onsubmit">
                     <v-row>
                         <v-col>
-                            <h1>Type your e-mail</h1>
+                            <h1>Digite seu e-mail</h1>
                         </v-col>
                     </v-row>
                     <v-row>
                         <v-col>
-                            <p>We will send an e-mail with the code to restore your password</p>
+                            <p>Nós enviaremos um e-mail com o código para recuperação de sua senha</p>
+                            <!-- <p>We will send an e-mail with the code to restore your password</p> -->
                         </v-col>
                     </v-row>
                     <v-row>
@@ -24,7 +25,7 @@
                                 variant="outlined"
                                 placeholder="User@gmail.com"
                                 clearable
-                                label="Login"
+                                label="Email"
                                 v-model="email"
                                 :rules="emailRules"
                                 required
@@ -40,7 +41,7 @@
                                 size="large"
                                 type="submit"
                                 variant="elevated"  
-                            >Sign in
+                            >Enviar
                             </v-btn>
                         </v-col>
                     </v-row>
