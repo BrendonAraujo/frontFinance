@@ -12,38 +12,44 @@
                     <p class="text-center"> Fill out the form below to register</p>
                     <v-container>
                         <v-text-field 
-                        variant="outlined"
-                        placeholder="John"
-                        clearable
-                        label="Nome"
-                        v-model="name"
-                        :rules="nameRules"
-                        required
+                            variant="outlined"
+                            placeholder="John"
+                            clearable
+                            label="Nome"
+                            v-model="name"
+                            :rules="nameRules"
+                            required
                         ></v-text-field>
                         <v-text-field
-                        variant="outlined"
-                        placeholder="User@gmail.com"
-                        clearable
-                        label="E-mail"
-                        v-model="email"
-                        :rules="emailRules"
-                        required
+                            variant="outlined"
+                            placeholder="User@gmail.com"
+                            clearable
+                            label="E-mail"
+                            v-model="email"
+                            :rules="emailRules"
+                            required
                         ></v-text-field>
                         <v-text-field
-                        variant="outlined"
-                        clearable
-                        label="Senha"
-                        v-model="password"
-                        :rules="passwordRules"
-                        required
+                            variant="outlined"
+                            clearable
+                            label="Senha"
+                            v-model="password"
+                            :rules="passwordRules"
+                            :type="showPassword ? 'text' : 'password'"
+                            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                            @click:append="showPassword = !showPassword"
+                            required
                         ></v-text-field>
                         <v-text-field
-                        variant="outlined"
-                        clearable
-                        label="Confirmação de senha"
-                        v-model="confirmPassword"
-                        :rules="passwordConfirmRules"
-                        required
+                            variant="outlined"
+                            clearable
+                            label="Confirmação de senha"
+                            v-model="confirmPassword"
+                            :rules="passwordConfirmRules"
+                            :type="showConfirmPassword ? 'text' : 'password'"
+                            :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                            @click:append="showConfirmPassword = !showConfirmPassword"
+                            required
                         ></v-text-field>
                         <v-btn 
                             :disabled="!form"
@@ -77,6 +83,8 @@ export default {
     data() {
         return{
             form: false,
+            showPassword: false,
+            showConfirmPassword: false,
             loading: false,
             name: "",
             email: "",
