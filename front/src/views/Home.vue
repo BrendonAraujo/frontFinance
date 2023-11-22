@@ -9,9 +9,9 @@
           Resultado Mensal
         </v-card-title>
         <v-card-text>
-          <v-col :style="totalValue > 0 ? 'color:green' : 'color:red'">
+          <v-col :style="valorTotal > 0 ? 'color:green' : 'color:red'">
             <span style="font-size: x-large">
-              R${{ totalValue }}
+              R${{ valorTotal }}
             </span>
           </v-col>
         </v-card-text>
@@ -91,7 +91,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="auto">
-                    <p>Conta: {{ item.account.name }}</p>
+                    <p>Conta: {{ item.account?.name }}</p>
                   </v-col>
                   <v-col cols="auto">
                     <edit-finance :finance="item"></edit-finance>
@@ -125,7 +125,7 @@ import EditFinance from '@/components/EditFinance.vue'
 import financeService from '@/services/FinanceService'
 import FinanceFilter from '@/models/ReleasesFiance/FinanceFilter'
 import { store } from '@/store';
-import { mapState } from 'vuex';
+import { mapState, Store } from 'vuex';
 
 if(store.state.user.token == "")
   router.push('/login');
@@ -145,7 +145,6 @@ export default {
         'Janeiro','Fevereiro','Março','Abril',
         'Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'        
       ],
-      totalValue: 0
     }
   },
   created: function(){
@@ -158,9 +157,7 @@ export default {
     filter.month = this.selectedMonth + 1;
     filter.year = today.getFullYear();
   
-    financeService.GetByFilter(filter).then((result) => {
-      store.state.finance = result;
-    });
+    financeService.GetByFilter(filter).then((result) => {});
   
   },
   methods:{
@@ -168,28 +165,15 @@ export default {
       financeService.token = userService.user.token;
 
       let filter = new FinanceFilter();
-
       filter.month = this.selectedMonth + 1;
       filter.year = new Date().getFullYear();
       filter.type = this.tipoLancamento;
 
-      financeService.GetByFilter(filter).then((result) => {
-        store.state.finance = result;
-        this.updateTotal()
-      });
+      financeService.GetByFilter(filter).then((result) => {});
     },
     deleteItem(item){
       financeService.token = userService.user.token;
-      financeService.delete(item).then(() =>{
-        this.updateTotal()
-      });
-    },
-    updateTotal(){
-      this.totalValue = 0;
-      console.log(this.itensFinance)
-      this.itensFinance.forEach(x => this.totalValue  += x.value);
-      console.log(this.totalValue)
-
+      financeService.delete(item).then(() =>{});
     },
     nextMonth(){
       if(this.selectedMonth < 11)
@@ -216,6 +200,7 @@ export default {
   },
   computed: mapState ({
     itensFinance: state => state.finance,
+    valorTotal: state => state.valorTotal
   }),
 }
 

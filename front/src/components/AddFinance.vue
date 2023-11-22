@@ -147,7 +147,6 @@
         });
       },
       clearValues(){
-        console.log("Limpei os campos")
         this.tipoLancamento = null,
         this.receita = 0,
         this.despesa =  1,

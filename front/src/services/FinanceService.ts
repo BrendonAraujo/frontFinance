@@ -21,6 +21,9 @@ class FinanceService {
     GetByFilter(filter : FinanceFilter){
         return axios.post(urlApi+'Finance/v1/by-filter/',filter,this.getConfigRequest())
             .then(function(response){
+                if(response.data.statusCode == 0){
+                    store.commit("addAllFinances",response.data.data);
+                }
                 return response.data.data
             })
             .catch(function (error) {
@@ -31,6 +34,9 @@ class FinanceService {
     add(finance : FinanceCreate){
         return axios.post(urlApi+'Finance/v1/',finance,this.getConfigRequest())
             .then(function(response){
+                if(response.data.statusCode == 0){
+                    store.commit("addFinance",response.data.data);
+                }
                 return response.data.data
             })
             .catch(function (error) {

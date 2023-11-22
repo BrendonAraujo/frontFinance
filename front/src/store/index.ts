@@ -1,12 +1,14 @@
 import ReleaseFiance from '@/models/ReleasesFiance/ReleaseFiance'
 import User from '@/models/Users/User'
+import { stat } from 'node:fs'
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
 export interface State {
   count: number,
   user: User,
-  finance: any[]
+  finance: any[],
+  valorTotal: number
 }
 
 export const key: InjectionKey<Store<State>> = Symbol()
@@ -15,22 +17,40 @@ export const store = createStore<State>({
   state: {
       count: 0,
       user: new User(),
-      finance: []
+      finance: [],
+      valorTotal: 0
   },
   mutations:{
+    addAllFinances(state, finances){
+      state.finance = finances;
+      state.valorTotal = 0;
+      state.finance.forEach(x => {
+        state.valorTotal += (x.value)
+      });
+    },
     deleteFinance(state, id){
       var index = state.finance.indexOf(state.finance.find(c => c.id = id))
-      state.finance.splice(index, 1);
+      state.finance.splice(index-1, 1);
+      state.valorTotal = 0;
+      state.finance.forEach(x => {
+        state.valorTotal += (x.value)
+      });
     },
     editFinance(state, finance){
-      console.log('Atual')
-      console.log(finance)
-      console.log("Antigo")
-      console.log(state.finance.find(c => c.id = finance.id))
-
       var index = state.finance.indexOf(state.finance.find(c => c.id = finance.id))
       state.finance.splice(index, 1);
       state.finance.push(finance)
+      state.valorTotal = 0;
+      state.finance.forEach(x => {
+        state.valorTotal += (x.value)
+      });
+    },
+    addFinance(state, finance){
+      state.finance.push(finance)
+      state.valorTotal = 0;
+      state.finance.forEach(x => {
+        state.valorTotal += (x.value)
+      });
     }
   }
 })
