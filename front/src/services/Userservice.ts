@@ -7,6 +7,7 @@ import UserValidateResetCode from '@/models/Users/UserValidateResetCode';
 import UserResetPassword from '@/models/Users/UsertResetPassword';
 import User from '@/models/Users/User';
 import UserUpdate from '@/models/Users/UserUpdate';
+import { store } from '@/store';
 
 const urlApi = 'https://backendfinanceprod.azurewebsites.net/'; //'https://localhost:7245/';
 let resetCode = 0;
@@ -52,6 +53,10 @@ class UserService {
           // aqui temos acesso ao erro, quando alguma coisa inesperada acontece:
           return "Server error, try again :(";
         })
+    }
+
+    logOug(){
+      store.commit("addUser",null);
     }
 
     update(user: UserUpdate){

@@ -8,6 +8,7 @@ export interface State {
   count: number,
   user: User,
   finance: any[],
+  isLogged: boolean,
   valorTotal: number
 }
 
@@ -17,6 +18,7 @@ export const store = createStore<State>({
   state: {
       count: 0,
       user: new User(),
+      isLogged: false,
       finance: [],
       valorTotal: 0
   },
@@ -51,6 +53,14 @@ export const store = createStore<State>({
       state.finance.forEach(x => {
         state.valorTotal += (x.value)
       });
+    },
+    addUser(state, user){
+      if(user == null){
+        state.isLogged= false;
+      }else{
+        state.isLogged= true;
+      }
+      state.user = user;
     }
   }
 })

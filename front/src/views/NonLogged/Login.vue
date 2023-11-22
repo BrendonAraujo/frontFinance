@@ -118,7 +118,8 @@ export default {
 
                     userService.user = loggedUser;
                     
-                    store.state.user = loggedUser;
+                    store.commit("addUser",loggedUser);
+                    // store.state.user = loggedUser;
 
                     setTimeout(() => (this.loading = false), 2000);
                     setTimeout(() => router.push("/home") , 2000);

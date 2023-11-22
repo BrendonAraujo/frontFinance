@@ -15,7 +15,7 @@
       flat 
       @click="onExit()"
     >
-      <span>Sign out</span>
+      <span>Sair</span>
       <v-icon right>mdi-logout</v-icon>
     </v-btn>
   </v-app-bar>
@@ -57,9 +57,7 @@ export default{
       drawer: store.state.user.token != '',
       userName: "",
       screenList:[
-        { name:"Editar usuário", path: "/edituser"},
-        { name:"Análise mensal", path: ""},
-        { name:"Análise anual", path: ""}
+        { name:"Editar usuário", path: "/edituser"}
       ]
     }
   },
@@ -68,7 +66,8 @@ export default{
   },
   methods:{
     onExit(){
-      userService.user = null;
+      // userService.user = null;
+      userService.logOug();
       router.push("/");
     },
     load(){
@@ -80,7 +79,7 @@ export default{
   },
   computed: mapState ({
     userLogged: state => state.user,
-    showBar: state => state.user.token != ''
+    showBar: state => state.isLogged != ''
   }),
 }
 </script>
