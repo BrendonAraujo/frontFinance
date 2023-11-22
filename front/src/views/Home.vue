@@ -27,9 +27,12 @@
     <v-col cols="12">
       <v-card>
         <v-row class="text-center">
+          <v-col class="pb-0" cols="12">
+            2023
+          </v-col>
           <v-col cols="4">
-            <v-btn>
-              <v-icon @click="previousMonth()">
+            <v-btn @click="previousMonth()">
+              <v-icon>
                 mdi-arrow-left
               </v-icon>
             </v-btn>

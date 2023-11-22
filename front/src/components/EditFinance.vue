@@ -81,7 +81,7 @@
             </v-row>
             <v-row>
               <v-col cols="12" sm="6" md="4">
-                <VueDatePicker cols="12" sm="6" md="4" large dark v-model="dataExect" />
+                <VueDatePicker :format="format" cols="12" sm="6" md="4" large dark v-model="dataExect" />
               </v-col>
               <v-col>
                 <!-- TODO: Ajustar máscara -->
@@ -116,9 +116,25 @@
 import accountService from '@/services/AccountService'
 import financeService from '@/services/FinanceService'
 import FinanceEdit from '@/models/ReleasesFiance/FinanceEdit'
+import { ref } from 'vue';
 
 export default{
   props:['finance'],
+  setup(){
+    
+    const date = ref(new Date());
+    // In case of a range picker, you'll receive [Date, Date]
+    const format = (date) => {
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+    return {
+      format
+    }
+  },
   data(){
       return  {
         dialog: false,
