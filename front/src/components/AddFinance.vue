@@ -120,9 +120,24 @@
   import financeService from '@/services/FinanceService'
   import VueDatePicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css'
+  import { ref } from 'vue';
 
   export default {
     components: { VueDatePicker },
+    setup(){
+      const date = ref(new Date());
+      // In case of a range picker, you'll receive [Date, Date]
+      const format = (date) => {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        return `${day}/${month}/${year}`;
+      }
+      return {
+        format
+      }
+    },
     data () {
       return {
         dialog: false,
