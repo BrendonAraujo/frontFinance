@@ -85,12 +85,19 @@
               </v-col>
               <v-col>
                 <!-- TODO: Ajustar máscara -->
+                <input 
+                  hidden
+                  v-maska
+                  data-maska="9 99#,##"
+                  data-maska-tokens="9:[0-9]:repeated"
+                  data-maska-reversed
+                  v-model="value"
+                >
                 <v-text-field
+                  v-model="value"
                   clearable
                   Outlined 
-                  v-model="value"
                   label="Value"
-                  type="number"
                 >
                 </v-text-field>
               </v-col>
@@ -121,6 +128,7 @@
   import VueDatePicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css'
   import { ref } from 'vue';
+  import { vMaska } from "maska"
 
   export default {
     components: { VueDatePicker },
@@ -141,6 +149,7 @@
     data () {
       return {
         dialog: false,
+        teste: null,
         tipoLancamento: null,
         receita: 0,
         despesa: 1,

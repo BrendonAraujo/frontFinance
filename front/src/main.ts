@@ -11,12 +11,12 @@ import '@vuepic/vue-datepicker/dist/main.css'
 // Composables
 import { createApp } from 'vue'
 import Hotjar from 'vue-hotjar'
+import { vMaska } from "maska"
 
 // Plugins
 import { registerPlugins } from '@/plugins'
 
 import router from '@/router/index'
-
 const route  = router;
 const app = createApp(App)
 
@@ -33,6 +33,8 @@ app.use (Hotjar, {
 })
 
 app.component('VueDatePicker', VueDatePicker);
+app.directive("maska", vMaska);
+
 registerPlugins(app)
 
 app.mount('#app')
