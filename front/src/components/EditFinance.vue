@@ -35,8 +35,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-card-title>
-            <!-- TODO: Melhorar nome do card -->
-            Edit Finance
+            Edite o Lançamento
         </v-card-title>
         <v-card-text>
           <v-container fluid>
@@ -84,7 +83,14 @@
                 <VueDatePicker :format="format" cols="12" sm="6" md="4" large dark v-model="dataExect" />
               </v-col>
               <v-col>
-                <!-- TODO: Ajustar máscara -->
+                <input 
+                  hidden
+                  v-maska="bindedObject"
+                  data-maska="9 99#,##"
+                  data-maska-tokens="9:[0-9]:repeated"
+                  data-maska-reversed
+                  v-model="value"
+                >
                 <v-text-field
                   Outlined 
                   v-model="value"
@@ -116,12 +122,14 @@
 import accountService from '@/services/AccountService'
 import financeService from '@/services/FinanceService'
 import FinanceEdit from '@/models/ReleasesFiance/FinanceEdit'
-import { ref } from 'vue';
+import { ref,reactive } from 'vue';
+import { vMaska } from "maska"
 
 export default{
   props:['finance'],
   setup(){
-    
+    const maskedValue = ref('')
+    const bindedObject = reactive({})
     const date = ref(new Date());
     // In case of a range picker, you'll receive [Date, Date]
     const format = (date) => {
@@ -132,7 +140,9 @@ export default{
       return `${day}/${month}/${year}`;
     }
     return {
-      format
+      format,
+      maskedValue,
+      bindedObject,
     }
   },
   data(){
@@ -163,7 +173,7 @@ export default{
            let finance = new FinanceEdit();
            finance.AccountId = this.acountSelected.id
            finance.TypeFinanceRelease = this.tipoLancamento
-           finance.Value = this.value;
+           finance.Value = this.bindedObject.masked.replace(",",".").replaceAll(" ","");
            finance.DateExec = this.dataExect
            finance.Obs = this.obs;
            finance.id = this.finance.id;

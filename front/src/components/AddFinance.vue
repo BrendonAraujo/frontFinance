@@ -31,13 +31,12 @@
             text
             @click="save()"
           >
-            Save
+            Salvar
           </v-btn>
         </v-toolbar-items>
         </v-toolbar>
         <v-card-title>
-            <!-- TODO: Melhorar nome do card -->
-            Finance register
+              Adicione o Lançamento
         </v-card-title>
         <v-card-text>
           <v-container fluid>
@@ -84,10 +83,9 @@
                 <VueDatePicker cols="12" sm="6" md="4" large dark v-model="date" />
               </v-col>
               <v-col>
-                <!-- TODO: Ajustar máscara -->
                 <input 
                   hidden
-                  v-maska
+                  v-maska="bindedObject"
                   data-maska="9 99#,##"
                   data-maska-tokens="9:[0-9]:repeated"
                   data-maska-reversed
@@ -127,13 +125,16 @@
   import financeService from '@/services/FinanceService'
   import VueDatePicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css'
-  import { ref } from 'vue';
+  import { ref,reactive } from 'vue';
   import { vMaska } from "maska"
 
   export default {
     components: { VueDatePicker },
     setup(){
+      const fnanceValue = 0;
       const date = ref(new Date());
+      const maskedValue = ref('')
+      const bindedObject = reactive({})
       // In case of a range picker, you'll receive [Date, Date]
       const format = (date) => {
         const day = date.getDate();
@@ -143,7 +144,10 @@
         return `${day}/${month}/${year}`;
       }
       return {
-        format
+        format,
+        maskedValue,
+        bindedObject,
+        fnanceValue
       }
     },
     data () {
@@ -185,12 +189,13 @@
         this.dialog = true
       },
       save(){
+        console.log('Teste')
         if(this.acountSelected != null || this.acountSelected != undefined){
           let finance = new FinanceCreate();
           finance.AccountId = this.acountSelected.id
           finance.TypeFinanceRelease = this.tipoLancamento
           finance.DateExec = this.date
-          finance.Value = this.value;
+          finance.Value = this.bindedObject.masked.replace(",",".").replaceAll(" ","")
           finance.Obs = this.obs;
           financeService.add(finance);
 

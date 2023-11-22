@@ -6,7 +6,6 @@
   >
     <v-app-bar-nav-icon @click="load()" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     <v-app-bar-title clas="grey--text">
-      <!-- TODO: Rever nome do aplicativo -->
       <span class="font-weight-light">Finanger</span>
     </v-app-bar-title>
     <v-spacer></v-spacer>
