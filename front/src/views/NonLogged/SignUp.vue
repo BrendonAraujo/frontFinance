@@ -2,14 +2,14 @@
     <v-container>
         <v-row>
             <v-col>
-                <v-alert v-if="showMessageAlert" v-text="message" type="warning"></v-alert>
+                <v-alert v-if="showMessageAlert" :text="message" type="warning"></v-alert>
             </v-col>
         </v-row>
         <v-row>
             <v-col>
                 <v-form v-model="form"  @submit.prevent="onsubmit">
-                    <h1 class="text-center">Welcome to Finance Mananger</h1>
-                    <p class="text-center"> Fill out the form below to register</p>
+                    <h1 class="text-center">Bem vindo ao Finance Mananger</h1>
+                    <p class="text-center"> Por favor, preencha os dados abaixo para realizar o cadastro</p>
                     <v-container>
                         <v-text-field 
                             variant="outlined"
