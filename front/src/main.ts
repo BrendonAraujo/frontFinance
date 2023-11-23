@@ -29,7 +29,7 @@ const app = createApp(App)
 //   app.use(cors(corsOptions))
 
 app.use (Hotjar, {
-  id: '3694790' // Hotjar Site ID
+  id: '3694780' // Hotjar Site ID
 })
 
 app.component('VueDatePicker', VueDatePicker);
