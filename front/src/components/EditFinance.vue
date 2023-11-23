@@ -94,7 +94,7 @@
                 <v-text-field
                   Outlined 
                   v-model="value"
-                  label="Value"
+                  label="Valor"
                   type="number"
                 >
                 </v-text-field>
