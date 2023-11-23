@@ -173,7 +173,12 @@ export default{
            let finance = new FinanceEdit();
            finance.AccountId = this.acountSelected.id
            finance.TypeFinanceRelease = this.tipoLancamento
-           finance.Value = this.bindedObject.masked.replace(",",".").replaceAll(" ","");
+
+           let teste = this.tipoLancamento == 0 ? 
+            this.bindedObject.masked.replace(",",".").replaceAll(" ","") :
+            (this.bindedObject.masked.replace(",",".").replaceAll(" ","") * (-1));
+
+           finance.Value = teste;//this.bindedObject.masked.replace(",",".").replaceAll(" ","");
            finance.DateExec = this.dataExect
            finance.Obs = this.obs;
            finance.id = this.finance.id;

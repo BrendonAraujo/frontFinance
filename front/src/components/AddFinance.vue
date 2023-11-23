@@ -195,7 +195,12 @@
           finance.AccountId = this.acountSelected.id
           finance.TypeFinanceRelease = this.tipoLancamento
           finance.DateExec = this.date
-          finance.Value = this.bindedObject.masked.replace(",",".").replaceAll(" ","")
+
+          let teste = this.tipoLancamento == 0 ? 
+            this.bindedObject.masked.replace(",",".").replaceAll(" ","") :
+            (this.bindedObject.masked.replace(",",".").replaceAll(" ","") * (-1));
+
+          finance.Value = teste;//this.bindedObject.masked.replace(",",".").replaceAll(" ","")
           finance.Obs = this.obs;
           financeService.add(finance);
 
