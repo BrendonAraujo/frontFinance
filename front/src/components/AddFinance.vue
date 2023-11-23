@@ -80,7 +80,7 @@
             </v-row>
             <v-row>
               <v-col cols="12" sm="6" md="4">
-                <VueDatePicker cols="12" sm="6" md="4" large dark v-model="date" />
+                <VueDatePicker :format="format" cols="12" sm="6" md="4" large dark v-model="date" />
               </v-col>
               <v-col>
                 <input 
