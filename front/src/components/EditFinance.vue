@@ -30,7 +30,7 @@
               text
               @click="save()"
             >
-              Save
+              Salvar
             </v-btn>
           </v-toolbar-items>
         </v-toolbar>
@@ -70,7 +70,7 @@
                   item-title="name"
                   item-value="id"
                   :return-object="true"
-                  label="Select an item.."
+                  label="Selecione uma conta"
                   outlined
                   clearable
                   hide-selected
