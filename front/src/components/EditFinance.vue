@@ -92,10 +92,10 @@
                   v-model="value"
                 >
                 <v-text-field
-                  Outlined 
                   v-model="value"
+                  clearable
+                  Outlined 
                   label="Valor"
-                  type="number"
                 >
                 </v-text-field>
               </v-col>
