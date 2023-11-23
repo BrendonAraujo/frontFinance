@@ -95,7 +95,7 @@
                   v-model="value"
                   clearable
                   Outlined 
-                  label="Value"
+                  label="Valor"
                 >
                 </v-text-field>
               </v-col>
